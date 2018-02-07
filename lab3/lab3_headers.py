@@ -18,7 +18,7 @@ def plot_bode_RC(R,C,omega_min,omega_max,flag):
     """ Plots the bode function between the given limits. The flag
     decides whether the transfer function used is for the high-pass 
     or low-pass filter"""
-    Nomega = 1000
+    Nomega = 14
     H = np.zeros(Nomega)
     omega = np.linspace(np.log(omega_min),np.log(omega_max),Nomega)
     if(flag == 0):
@@ -26,15 +26,15 @@ def plot_bode_RC(R,C,omega_min,omega_max,flag):
         H = 1./np.sqrt(1+(R*C*np.exp(omega))**2)
     elif(flag == 1):
         # High pass
-        H = (R*C*np.exp(omega))/np.sqrt(1+(R*C*np.exp(omega))**2)
+        H = (R*C*2*np.pi*np.exp(omega))/np.sqrt(1+(R*C*2*np.pi*np.exp(omega))**2)
     plt.figure(1)
-    plt.plot(omega,np.log(H),'-.',label='$R = %.2f\, K\Omega, C = %.2f\, nF$' % (R/1e3,C/1e-9))
+    plt.plot(2*np.pi*omega,np.log(H),'-.',label='$R = %.2f\, K\Omega, C = %.2f\, nF$' % (R/1e3,C/1e-9))
     plt.xlabel(r"$\ln\omega$")
     plt.ylabel(r"$\ln H(\omega)$")
     plt.legend()
     plt.grid()
     plt.draw()
-    return H
+    return np.array([H,omega])
 
 def generate_mock_RC(R,C,omega_min,omega_max,flag):
     """ Generates lots of mock data that follows bode curve """
@@ -65,8 +65,8 @@ def plot_bode_BP(R,L,C,omega_min,omega_max):
     """ Plots the bode function between the given limits. The flag
     decides whether the transfer function used is for the high-pass 
     or low-pass filter"""
-    Nomega = 1000 
-    omega = np.linspace(np.log(omega_min),np.log(omega_max),Nomega)
+    Nomega = 14
+    omega = np.linspace(2*np.pi*np.log(omega_min),2*np.pi*np.log(omega_max),Nomega)
     H =abs(1/(1./(2*np.pi*np.exp(omega)*L)-(2*np.pi*np.exp(omega)*C)))/np.sqrt(R**2+1/(1./(2*np.pi*np.exp(omega)*L)-(2*np.pi*np.exp(omega)*C))**2)
     
     plt.figure(1)
@@ -76,7 +76,7 @@ def plot_bode_BP(R,L,C,omega_min,omega_max):
     plt.legend()
     plt.grid()
     plt.draw()
-    return H
+    return np.array(H,omega/(2*np.pi))
 
 def generate_mock_BP(R,L,C,omega_min,omega_max):
     """ Generates lots of mock data that follows bode curve """
@@ -92,7 +92,9 @@ def generate_mock_BP(R,L,C,omega_min,omega_max):
         plt.draw()
 
 def plot_point(omega,H):
-    plt.plot(np.log(omega),np.log(H),'go')
+    plt.plot(np.log(2*np.pi*omega),np.log(H),'go',label=r"Measured data")
+    plt.plot(np.log(2*np.pi*omega),np.log(H),'g')
+    plt.legend()
     plt.draw()
 
 def plot_bode_Res(R1,R2,omega_min,omega_max):

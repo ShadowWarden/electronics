@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import lab3_headers as lh
 
 L=9.645e-3
+Q = 10.14
 
 C1 = 10.06e-9
 C2 = 995.2e-12
