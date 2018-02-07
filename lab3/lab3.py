@@ -17,3 +17,12 @@ C2 = 995.2e-12
 
 R1 = 9.86e3
 R2 = 6.72e3
+
+# Cutoff for Bandpass by phase and by amplitude
+f_cut_phase = 16148
+f_cut_amp = 16134
+
+f_minus = 15284
+f_plus = 17064
+
+
