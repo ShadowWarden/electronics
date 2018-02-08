@@ -32,7 +32,7 @@ def plot_bode(A0,f0,omega_min,omega_max,labelstring):
 
 def input_Z(Ri,A0,f,f0,R,Rf):
     N = np.sqrt((Ri*A0*R+Ri*(R+Rf))**2+(f/f0*Ri*(R+Rf))**2)
-    D = np.sqrt((R+Rf)**2+((R+Rf)*f/f0)**2)**0.5
+    D = np.sqrt((R+Rf)**2+((R+Rf)*f/f0)**2)
     return N/D
 
 def output_Z(Ro,A0,f,f0,R,Rf):
