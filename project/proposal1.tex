@@ -35,9 +35,49 @@
 
 \begin{document}
 
-\title{Project Proposal: Cosmic Ray Detection}
+\title{Project Proposal: Cosmic Ray Detection/Intelligent active suspension}
 
+\author{Omkar H. Ramachandran, Jacob A. Moss}
 \maketitle
 
+Note: While both our projects propose the use of a micro-controller, 
+\textbf{in both cases, the arduino is only used to amplify the final result
+beyond what is already a very challenging project. 
+The hero of the show, so to speak, is the analog circuit, with the arduino
+only filling minor book-keeping or aesthetic roles}
+
+We have a couple of decent ideas for this project:
+\begin{itemize}
+	\item \textbf{Muon flux counter}: For this project, we aim to design a 
+		simple detector that counts Muons. 
+		The physics behind the potential detector is as follows: When a high-
+		energy particle hits a luminescent fluid, it scatters photons within
+		said fluid.
+		With a cleverly placed photo-multiplier tube, we can accurately estimate 
+		the intensity of light, thus getting a good idea of a Muon event.
+		If we are allowed to use an Arduino, we can further write a counter that
+		keeps track of the number of Muons hitting the fluid per unit time,
+		thus providing us with the Muon flux.
+		We're primarily interested in this project because both of our research
+		projects deal primarily with Theoretical Astrophysics/Cosmology, both 
+		subjects where a major mode of observation is in the detection of
+		high energy particles from cosmic ray scattering
+	\item \textbf{Intelligent Active Suspension}: For this project, we propose
+		an intelligent active suspension system - tested on a small scale Mechano
+		car - that uses a Potentiometer to detect terrain features and dynamically
+		adjust the car's ride height.
+		Formula 1 cars - specifically the Williams FW 14 - in the early 90s used 
+		to have this system, but unlike a general purpose solution of the kind 
+		we are proposing, they simply programmed an entire circuit into the car's 
+		internal computer, thus selecting the optimum ride height for each corner.
+		For our model, we propose a probe that sits by the wheel and is allowed to
+		move up and down.
+		The position of this probe will then set a potential difference that can
+		then be used in conjunction with an appropriate filter to select the ride
+		height.
+		If we are allowed to use arduinos, we will further make the cars self
+		driving, thus enabling it to intelligently detect and navigate out of
+		ditches.
+\end{itemize}
 
 \end{document}
