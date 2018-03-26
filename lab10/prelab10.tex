@@ -1,0 +1,104 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{babel}
+\newcommand{\GeV}{\,{\rm GeV}}
+\newcommand{\MHz}{\,{\rm MHz}}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{./plots/}}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green},
+  commentstyle=\itshape\color{red},
+  identifierstyle=,
+  stringstyle=\color{blue},
+}
+
+\lstset{escapechar=@,style=customc}
+
+
+\begin{document}
+
+\title{Prelab 10 : Arduino}
+
+\author{Omkar H. Ramachandran}
+\maketitle
+
+\section{Set up the Arduino software}
+Done. Because I've got Arch Linux on my machine and none of the IDEs work
+properly, I just created a custom makefile that allows any of my code to
+compile directly on the microcontroller. 
+I'll bring along the arduino I play around with at home, since I'm pretty sure
+I'll have to rewrite the makefile if the Arduino provided in the lab is
+different to what I have at home.
+
+\section{Download Sample Code}
+The starter sketch is very straightforward:
+\begin{lstlisting}
+/* Set LED number to an integer. Depending on the model, you'll have
+different numbers of these */
+int led = 7;
+void setup(){
+/* Configure pin for Output */
+	pinMode(led,OUTPUT);
+}
+/* OHR: There are two 'void setups' in the manual. Was this a typo? */
+void loop(){
+/* Set pin 7 value to high, i.e send a current through this pin */
+	digitalWrite(led,HIGH);
+/* Repeat this forever */
+}
+\end{lstlisting}
+
+\subsection{What do the following functions do?}
+\begin{itemize}
+	\item \lstinline{pinMode()}: Configures a specified pin to act as an input
+		or output.
+	\item \lstinline{loop()}: Equivalant of the 'main' function in the Arduino
+		language. All code defined here will repeat over and over as long as the
+		device is powered
+	\item \lstinline{digitalWrite()}: Given a pin set to OUTPUT, digitalWrite
+		will set the current passing through said pin to HIGH or LOW.
+	\item \lstinline{delay()}: Pauses the program for a prescribed amount of
+		time in milliseconds.
+\end{itemize}
+
+\section{Prepare to explore and lab}
+\subsection{Calculate the series resistor}
+We know that 
+$$ I_{max} = \frac{V}{R} $$
+$$ 0.02 = \frac{5}{R} $$
+Thus,
+$$ R = \frac{5}{0.02} = 1\ k\Omega$$
+
+\subsection{Schematic for Potentiometer}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{schematic.jpg}
+	\caption{Circuit schematic for a potentiometer controlled LED}
+\end{figure}
+
+\subsection{Decide on a couple of projects}
+Well, one of the things that I've been working on, on my own time, is a motion
+sensor that automatically brightens and dims the lights in my room based on
+activity.
+While, such a project is normally hackathon worthy, i.e can be completed in a 
+couple of hours, I'll have to calibrate with Jacob and make sure that we choose
+a project that isn't too far beyond each of our skills.
+\end{document}
